@@ -1,2 +1,2 @@
 # MyAnimeListScraper
-A package to easily scrape www.myanimelist.com
+A package to easily scrape www.myanimelist.com 
