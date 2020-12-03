@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import cleaner
 import extractor
 import saver
+import sql_queries
 
 
 class MalScraper:
@@ -10,18 +11,33 @@ class MalScraper:
     This class defines a scraper for www.myanimelist.com.
     """
 
-    def __init__(self, output_type="tsv", output_location=None):
+    def __init__(self, output_type="tsv", output_location=None, db_host=None,
+                 db_user=None, db_password=None, db_database=None):
         """
         Parameters
         ----------
         output_type : str
-        The format to save the data. Either "tsv" or "sql".
+        The format to save the data. Either "tsv" or "mysql".
         output_location : str
         The location to save the data if output_type="tsv".
+        db_host : str
+        The database host. Required if output_type="mysql".
+        db_user : str
+        The database user. Required if output_type="mysql".
+        db_password : str
+        The database password. Required if output_type="mysql".
+        db_database : str
+        The database name. Required if output_type="mysql".
         """
         self.output_type = output_type
         self.output_location = output_location
         self.base_url = "https://myanimelist.net/"
+
+        if (output_type == "mysql") and (db_host is not None) and (db_user is not None) and (db_password is not None) and (db_database is not None):
+            from mysql_manager import DatabaseManager
+
+            self.sql_manager = DatabaseManager(db_host, db_user, db_password, db_database)
+
 
     def scrape_details(self, content_type="anime", start_page=0, failure_threshold=100, print_intermediate=False):
         """
@@ -43,6 +59,11 @@ class MalScraper:
         continue_scraping = True
         mal_id = start_page
         failure_count = 0
+        sql_details_table = self.sql_manager.check_table_exists("MAL_Anime_Details") if self.sql_manager else None
+
+        if sql_details_table == False:
+            self.sql_manager.execute(sql_queries.create_mal_anime_details_table(), None)
+            self.sql_manager.execute(sql_queries.create_mal_anime_detail_stats_table(), None)
 
         if print_intermediate:
             print("=======================STARTING MYANIMELIST SCRAPER=======================\n\n")
@@ -78,14 +99,21 @@ class MalScraper:
                 failure_count = 0
                 info = self.__get_anime_details(soup, mal_id) if content_type == "anime" else None
 
-                if self.output_type is "tsv":
-                    saver.save_as_tsv(self.output_location, info, "mal_" + content_type + "_details.tsv")
-                elif self.output_type is "sql":
-                    saver.save_as_sql(self.output_location, info, "mal_" + content_type + "_details.sql", "MAL_" + content_type.capitalize() + "_Details")
+                if self.output_type == "tsv":
+                    saver.save_as_tsv(self.output_location, "mal_" + content_type + "_details", data)
+                elif self.output_type == "mysql":
+                    if content_type == "anime":
+                        q1, v1 = sql_queries.insert_mal_anime_detail(info)
+                        self.sql_manager.execute(q1, v1)
 
-                break
+                        q2, v2 = sql_queries.insert_mal_anime_detail_stats(info)
+                        self.sql_manager.execute(q2, v2)
+                    
 
             mal_id = mal_id + 1
+
+            if(mal_id == 2):
+                break
 
     def __get_anime_details(self, soup, mal_id):
         """
@@ -113,7 +141,3 @@ class MalScraper:
             The dictionary holding extracted data
         """
         return cleaner.clean_anime_details(information_dict)
-
-if __name__ == "__main__": 
-    m = MalScraper()
-    m.scrape_details(print_intermediate=True)

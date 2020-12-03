@@ -1,4 +1,5 @@
 import math
+from collections import OrderedDict 
 
 def clean_anime_details(information_dict):
     """
@@ -10,7 +11,7 @@ def clean_anime_details(information_dict):
         The dictionary holding extracted data
     """
     # Creating final dictionary from dictionary passed since hard to account for values (changes sometimes based on page).
-    clean_information_dict = {}
+    clean_information_dict = OrderedDict()
 
     # Removing whitespace
     clean_information_dict["AltNameEnglish"] = information_dict["English"].strip() if "English" in information_dict else None
