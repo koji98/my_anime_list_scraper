@@ -11,7 +11,14 @@ A package to easily scrape www.myanimelist.com. The purpose of this package is t
 `from scraper import MalScraper`
 
 ### Instantiating the scraper
-Based on how you want to save the data, the parameters requried for the scraper constructor differs.
+| Constructor Parameters | Type | Description |
+| --- | --- | --- |
+| output_type | string | How the scraper will save the data. Either "tsv" or "mysql" <br/><br/> Default Value: "tsv" |
+| output_location | string | The location to save the data. <br/><br/> Required if `output_type="tsv"` |
+| db_host | string | The database host. <br/><br/> Required if `output_type="mysql"` |
+| db_user | string | The username to access the database. <br/><br/> Required if `output_type="mysql"` |
+| db_password | string | The password to access the database. <br/><br/> Required if `output_type="mysql"` |
+| db_database | string | The database name to write scrape data to. <br/><br/> Required if `output_type="mysql"` |
 
 #### Scraper saves data as TSV
 `mal_scraper = MalScraper(output_type='tsv', output_location='/Home/example/folder/)`
