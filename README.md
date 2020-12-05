@@ -8,7 +8,7 @@ A package to easily scrape www.myanimelist.com. The purpose of this package is t
 
 ## Usage
 ### Importing the scraper
-`from scraper import MalScraper`
+`from my_anime_list_scraper.scraper import MalScraper`
 
 ### Instantiating the scraper
 | Constructor Parameters | Type | Description |
