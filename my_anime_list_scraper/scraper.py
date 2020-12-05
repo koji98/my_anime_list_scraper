@@ -1,7 +1,6 @@
 import time
 import requests
 from bs4 import BeautifulSoup
-import logging 
 from my_anime_list_scraper import cleaner
 from my_anime_list_scraper import extractor
 from my_anime_list_scraper import saver
@@ -122,7 +121,7 @@ class MalScraper:
                 mal_id = mal_id + 1
                 time.sleep(self.request_period)
         except:
-            logging.exception("Error occured while scraping "  + self.base_url + content_type + "/" + str(mal_id))
+            print("\n\nError occured while scraping "  + self.base_url + content_type + "/" + str(mal_id) + "\n\n")
 
     def __extract(self, soup, mal_id, page_type):
         """

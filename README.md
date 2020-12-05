@@ -24,7 +24,7 @@ A package to easily scrape www.myanimelist.com. The purpose of this package is t
 `mal_scraper = MalScraper(output_type='tsv', output_location='/Home/example/folder/)`
 
 #### Scraper saves data in MySQL Database
-`mal_scraper = MalScraper(output_type='mysql', output_location='/Home/example/folder/, db_host=example_host_name, db_user=example_user, db_password=example_password, db_database=example_database)`
+`mal_scraper = MalScraper(output_type='mysql', db_host=example_host_name, db_user=example_user, db_password=example_password, db_database=example_database)`
 
 ## Methods
 
