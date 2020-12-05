@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="my_anime_list_scraper-koji98", # Replace with your own username
+    name="my_anime_list_scraper", # Replace with your own username
     version="0.0.1",
     author="Chidi Udeze",
     author_email="chidiu98@gmail.com",
