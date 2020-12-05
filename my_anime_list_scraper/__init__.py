@@ -1,1 +1,1 @@
-from scraper import MalScraper
+from my_anime_list_scraper.scraper import MalScraper
