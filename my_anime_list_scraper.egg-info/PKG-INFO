@@ -77,8 +77,6 @@ Description: # my_anime_list_scraper
            "PromoVideoBackgroundImage":"https://i.ytimg.com/vi/qig4KOK2R2g/mqdefault.jpg",
            "ImageSrc":"https://cdn.myanimelist.net/images/anime/4/19644.jpg"
         }`
-        
-        
 Platform: UNKNOWN
 Classifier: Programming Language :: Python :: 3
 Classifier: License :: OSI Approved :: MIT License
