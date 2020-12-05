@@ -1,4 +1,8 @@
 def create_mal_anime_details_table():
+    """
+    Returns query string for creating the MAL_Anime_Details table.
+    """
+
     return """
     CREATE TABLE MAL_Anime_Details (
         MAL_Id int NOT NULL PRIMARY KEY,
@@ -27,6 +31,10 @@ def create_mal_anime_details_table():
     """
 
 def create_mal_anime_detail_stats_table():
+    """
+    Returns query string for creating the MAL_Anime_Detail_Stats table.
+    """
+
     return """
     CREATE TABLE MAL_Anime_Detail_Stats (
         MAL_Id int NOT NULL PRIMARY KEY,
@@ -41,6 +49,11 @@ def create_mal_anime_detail_stats_table():
     """
 
 def insert_mal_anime_detail(data):
+    """
+    Returns tuple (query, values) necessary for inseting 
+    data into the MAL_Anime_Details table.
+    """
+
     query = """
     INSERT INTO MAL_Anime_Details 
     (
@@ -99,6 +112,11 @@ def insert_mal_anime_detail(data):
     return query, values
 
 def insert_mal_anime_detail_stats(data):
+    """
+    Returns tuple (query, values) necessary for inseting 
+    data into the MAL_Anime_Detail_Stats table.
+    """
+
     query = """
     INSERT INTO MAL_Anime_Detail_Stats
     (

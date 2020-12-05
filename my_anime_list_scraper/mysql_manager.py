@@ -10,14 +10,14 @@ class DatabaseManager:
         """
         Parameters
         ----------
-        host : str
-        The database host.
-        user : str
-        The database user.
-        password : str
-        The database password.
-        database : str
-        The database name.
+        host: str
+            The database host.
+        user: str
+            The database user.
+        password: str
+            The database password.
+        database: str
+            The database name.
         """
         self.host = host
         self.user = user
@@ -56,10 +56,10 @@ class DatabaseManager:
 
         Parameters
         ----------
-        query : str
-        A sql insert query.
-        values : tuple
-        Values to be inserted to the table
+        query: str
+            A sql insert query.
+        values: tuple
+            Values to be inserted to the table
         """
         cursor = self.db.cursor()
 
@@ -73,6 +73,13 @@ class DatabaseManager:
         self.db.commit()
 
     def check_table_exists(self, tablename):
+        """
+        Checks if a table exists within the database.
+
+        tablename: str
+            Name of the table to check if exists.
+        """
+
         cursor = self.db.cursor()
 
         cursor.execute("""

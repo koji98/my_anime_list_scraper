@@ -4,9 +4,9 @@ def extract_anime_details(soup, mal_id):
 
     Parameters
     ----------
-    soup : BeautifulSoup object
+    soup: BeautifulSoup object
         The BeautifulSoup object containing the page's content
-    mal_id : int
+    mal_id: int
         Id of the anime being scraped
     """
     dark_text_child_data = soup.find_all("span", class_="dark_text")
