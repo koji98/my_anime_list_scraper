@@ -1,7 +1,7 @@
 # my_anime_list_scraper
 A package to easily scrape www.myanimelist.com. The purpose of this package is to scrape large amounts of data from MyAnimeList, not to request individual information about a specific item within MyAnimeList. This package can be used to request individual information, but would recommend you to look towards another tool for that as this was not created with that in mind. 
 
-*my_anime_list_scraper* is being developed mainly for [anibrain.ai](anibrain.ai). This package will be updated as needed for the site mentioned above. If you require additional information currently not available through this package, please reach out or feel free to contribute.
+*my_anime_list_scraper* is being developed mainly for [anibrain.ai](https://anibrain.ai). This package will be updated as needed for the site mentioned above. If you require additional information currently not available through this package, please reach out or feel free to contribute.
 
 ## Installation
 `pip install my_anime_list_scraper`
