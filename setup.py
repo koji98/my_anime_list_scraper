@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="my_anime_list_scraper",
-    version="0.0.43",
+    version="0.0.44",
     author="Chidi Udeze",
     author_email="chidiu98@gmail.com",
     description="A scraper for www.myanimelist.com",

@@ -2,17 +2,11 @@ import time
 import requests
 from bs4 import BeautifulSoup
 import logging 
-import os
-import sys
-
-file_dir = os.path.dirname(__file__)
-sys.path.append(file_dir)
-
-import cleaner
-import extractor
-import saver
-import sql_queries
-from scraper_types import PageTypes
+from my_anime_list_scraper import cleaner
+from my_anime_list_scraper import extractor
+from my_anime_list_scraper import saver
+from my_anime_list_scraper import sql_queries
+from my_anime_list_scraper.scraper_types import PageTypes
 
 
 class MalScraper:
