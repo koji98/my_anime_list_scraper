@@ -69,4 +69,3 @@ Scraped Details (anime example):
    "PromoVideoBackgroundImage":"https://i.ytimg.com/vi/qig4KOK2R2g/mqdefault.jpg",
    "ImageSrc":"https://cdn.myanimelist.net/images/anime/4/19644.jpg"
 }`
-
