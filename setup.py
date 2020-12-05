@@ -3,19 +3,15 @@ import setuptools
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
-with open("LICENSE", "r") as fh:
-    license = fh.read()
-
 setuptools.setup(
     name="my_anime_list_scraper",
-    version="0.0.42",
+    version="0.0.43",
     author="Chidi Udeze",
     author_email="chidiu98@gmail.com",
     description="A scraper for www.myanimelist.com",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/koji98/my_anime_list_scraper",
-    license=license,
     # py_modules=["scraper"],
     packages=setuptools.find_packages(),
     # package_dir={ '':'my_anime_list_scraper'},

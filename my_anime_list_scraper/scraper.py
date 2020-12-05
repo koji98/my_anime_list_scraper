@@ -2,6 +2,12 @@ import time
 import requests
 from bs4 import BeautifulSoup
 import logging 
+import os
+import sys
+
+file_dir = os.path.dirname(__file__)
+sys.path.append(file_dir)
+
 import cleaner
 import extractor
 import saver
