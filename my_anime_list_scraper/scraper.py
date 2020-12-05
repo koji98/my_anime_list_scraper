@@ -39,7 +39,7 @@ class MalScraper:
         self.request_period = request_period
 
         if (output_type == "mysql") and (db_host is not None) and (db_user is not None) and (db_password is not None) and (db_database is not None):
-            from mysql_manager import DatabaseManager
+            from my_anime_list_scraper.mysql_manager import DatabaseManager
 
             self.sql_manager = DatabaseManager(db_host, db_user, db_password, db_database)
 
