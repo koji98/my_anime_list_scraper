@@ -8,7 +8,7 @@ with open("requirements.txt", "r") as r:
 
 setuptools.setup(
     name="my_anime_list_scraper",
-    version="0.0.45",
+    version="0.0.46",
     author="Chidi Udeze",
     author_email="chidiu98@gmail.com",
     description="A scraper for www.myanimelist.com",
