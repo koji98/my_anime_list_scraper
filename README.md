@@ -27,7 +27,9 @@ A package to easily scrape www.myanimelist.com. The purpose of this package is t
 `mal_scraper = MalScraper(output_type='mysql', output_location='/Home/example/folder/, db_host=example_host_name, db_user=example_user, db_password=example_password, db_database=example_database)`
 
 ## Methods
+
 **scrape_details()**
+
 | Parameters | Type | Description |
 | --- | --- | --- |
 | content_type | string | The type of the page being scraped. <br/> Only "anime" available right now <br/><br/> Default Value: "anime" |
@@ -36,6 +38,7 @@ A package to easily scrape www.myanimelist.com. The purpose of this package is t
 | print_intermediate | bool | Determine if to print intermediate output during scrape to keep user informed on progress <br/><br/> Default Value: False |
 
 Scraped Details (anime example):
+
 `{
    "AltNameEnglish":"Cowboy Bebop",
    "AltNameSynonyms":None,

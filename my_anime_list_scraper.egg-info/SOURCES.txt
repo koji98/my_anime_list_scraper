@@ -1,0 +1,14 @@
+README.md
+setup.py
+my_anime_list_scraper/__init__.py
+my_anime_list_scraper/cleaner.py
+my_anime_list_scraper/extractor.py
+my_anime_list_scraper/mysql_manager.py
+my_anime_list_scraper/saver.py
+my_anime_list_scraper/scraper.py
+my_anime_list_scraper/scraper_types.py
+my_anime_list_scraper/sql_queries.py
+my_anime_list_scraper.egg-info/PKG-INFO
+my_anime_list_scraper.egg-info/SOURCES.txt
+my_anime_list_scraper.egg-info/dependency_links.txt
+my_anime_list_scraper.egg-info/top_level.txt
