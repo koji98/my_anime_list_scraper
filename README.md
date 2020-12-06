@@ -13,12 +13,12 @@ A package to easily scrape www.myanimelist.com. The purpose of this package is t
 ### Instantiating the scraper
 | Constructor Parameters | Type | Description |
 | --- | --- | --- |
-| output_type | string | How the scraper will save the data. Either "tsv" or "mysql" <br/><br/> Default Value: "tsv" |
-| output_location | string | The location to save the data. <br/><br/> Required if `output_type="tsv"` |
-| db_host | string | The database host. <br/><br/> Required if `output_type="mysql"` |
-| db_user | string | The username to access the database. <br/><br/> Required if `output_type="mysql"` |
-| db_password | string | The password to access the database. <br/><br/> Required if `output_type="mysql"` |
-| db_database | string | The database name to write scrape data to. <br/><br/> Required if `output_type="mysql"` |
+| output_type | string | How the scraper will save the data. Either `'tsv'` or `'mysql'` <br/><br/> Default Value: `'tsv'` |
+| output_location | string | The absolute path of the location to save the data. This value must end with a *slash* (either forward or backward depending on the operating system) to specify it is the location of a folder. <br/><br/> Required if `output_type='tsv'` |
+| db_host | string | The database host. <br/><br/> Required if `output_type='mysql'` |
+| db_user | string | The username to access the database. <br/><br/> Required if `output_type='mysql'` |
+| db_password | string | The password to access the database. <br/><br/> Required if `output_type='mysql'` |
+| db_database | string | The database name to write scrape data to. <br/><br/> Required if `output_type='mysql'` |
 
 #### Scraper saves data as TSV
 `mal_scraper = MalScraper(output_type='tsv', output_location='/Home/example/folder/')`
@@ -32,17 +32,16 @@ A package to easily scrape www.myanimelist.com. The purpose of this package is t
 
 | Parameters | Type | Description |
 | --- | --- | --- |
-| content_type | string | The type of the page being scraped. <br/> Only "anime" available right now <br/><br/> Default Value: "anime" |
-| start_page | int | The page to start scraping *(e.g. type="anime" and start_page=5 => https://myanimelist.net/anime/5 )* <br/><br/> Default Value: 0 |
-| failure_threshold | int | The number of consecutive fails allowed before stopping the scraper. A fail is when a 404 page is returned, signifying no content is at that page. <br/><br/> Default Value: 100 |
-| print_intermediate | bool | Determine if to print intermediate output during scrape to keep user informed on progress <br/><br/> Default Value: False |
+| content_type | string | The type of the page being scraped. <br/> Only `'anime'` available right now <br/><br/> Default Value: `'anime'` |
+| start_page | int | The page to start scraping *(e.g. type="anime" and start_page=5 => https://myanimelist.net/anime/5 )* <br/><br/> Default Value: `0` |
+| failure_threshold | int | The number of consecutive fails allowed before stopping the scraper. A fail is when a 404 page is returned, signifying no content is at that page. <br/><br/> Default Value: `100` |
+| print_intermediate | bool | Determine if to print intermediate output during scraping to keep user informed on progress. <br/><br/> Default Value: `False` |
 
 Scraped Details (anime example):
 
 `{
    "AltNameEnglish":"Cowboy Bebop",
    "AltNameSynonyms":None,
-   "AltNameJapanese":"カウボーイビバップ",
    "MediaType":"TV",
    "EpisodeCount":26,
    "CurrentStatus":"Finished Airing",

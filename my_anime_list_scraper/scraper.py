@@ -34,6 +34,9 @@ class MalScraper:
             Time (secs) to wait in between requests to avoid being blocked.
         """
 
+        if output_location != None and (output_location[-1] != '/' and output_location[-1] != '\\'):
+            raise Exception("The output location must be folder. This means the output location must end with a slash (either forward or backwards).")
+
         self.output_type = output_type
         self.output_location = output_location
         self.base_url = "https://myanimelist.net/"
@@ -121,6 +124,9 @@ class MalScraper:
 
                 mal_id = mal_id + 1
                 time.sleep(self.request_period)
+
+            if print_intermediate:
+                print("\n\n =======================FINISHED SCRAPING MYANIMELIST =======================\n")
         except Exception as e:
             print("\n\nError occured while scraping "  + self.base_url + content_type + "/" + str(mal_id) + "\n\n")
             print(e)
