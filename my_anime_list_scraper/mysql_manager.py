@@ -19,6 +19,7 @@ class DatabaseManager:
         database: str
             The database name.
         """
+
         self.host = host
         self.user = user
         self.password = password
@@ -36,12 +37,14 @@ class DatabaseManager:
         Users of this class should **always** call close when they are
         done with this class so it can clean up the DB connection.
         """
+
         self.db.close()
 
     def connect(self):
         """
         Opens a connection to the database.
         """
+        
         self.db = mysql.connector.connect(
             host=self.host,
             user=self.user,
@@ -61,6 +64,7 @@ class DatabaseManager:
         values: tuple
             Values to be inserted to the table
         """
+
         cursor = self.db.cursor()
 
         if type(values) is list:

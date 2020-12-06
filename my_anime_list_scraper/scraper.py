@@ -33,10 +33,12 @@ class MalScraper:
         request_period: int
             Time (secs) to wait in between requests to avoid being blocked.
         """
+
         self.output_type = output_type
         self.output_location = output_location
         self.base_url = "https://myanimelist.net/"
         self.request_period = request_period
+        self.sql_manager = None
 
         if (output_type == "mysql") and (db_host is not None) and (db_user is not None) and (db_password is not None) and (db_database is not None):
             from my_anime_list_scraper.mysql_manager import DatabaseManager
@@ -65,7 +67,7 @@ class MalScraper:
         continue_scraping = True
         mal_id = start_page
         failure_count = 0
-        sql_details_table = self.sql_manager.check_table_exists("MAL_Anime_Details") if (self.output_type == "mysql") and (self.db_host is not None) and (self.db_user is not None) and (self.db_password is not None) and (self.db_database is not None) else None
+        sql_details_table = self.sql_manager.check_table_exists("MAL_Anime_Details") if self.sql_manager != None else None
 
         if sql_details_table == False:
             self.sql_manager.execute(sql_queries.create_mal_anime_details_table(), None)
@@ -84,7 +86,6 @@ class MalScraper:
 
                 # Request page
                 page = requests.get(url)
-                print(time.strftime("%H:%M:%S", time.localtime()))
 
                 # Parse content
                 soup = BeautifulSoup(page.content, "html.parser")
@@ -120,8 +121,9 @@ class MalScraper:
 
                 mal_id = mal_id + 1
                 time.sleep(self.request_period)
-        except:
+        except Exception as e:
             print("\n\nError occured while scraping "  + self.base_url + content_type + "/" + str(mal_id) + "\n\n")
+            print(e)
 
     def __extract(self, soup, mal_id, page_type):
         """

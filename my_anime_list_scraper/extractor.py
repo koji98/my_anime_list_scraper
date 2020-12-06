@@ -9,6 +9,7 @@ def extract_anime_details(soup, mal_id):
     mal_id: int
         Id of the anime being scraped
     """
+    
     dark_text_child_data = soup.find_all("span", class_="dark_text")
     details_dict = {}
 

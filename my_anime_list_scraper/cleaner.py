@@ -10,6 +10,7 @@ def clean_anime_details(information_dict):
     information_dict: dict
         The dictionary holding extracted data
     """
+
     # Creating final dictionary from dictionary passed since hard to account for values (changes sometimes based on page).
     clean_information_dict = OrderedDict()
 
