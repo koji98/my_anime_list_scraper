@@ -9,7 +9,6 @@ def create_mal_anime_details_table():
         Title varchar(255) DEFAULT NULL,
         AltNameEnglish varchar(255) DEFAULT NULL,
         AltNameSynonyms varchar(255) DEFAULT NULL,
-        AltNameJapanese varchar(255) DEFAULT NULL,
         Synopsis mediumtext DEFAULT NULL,
         MediaType varchar(50) DEFAULT NULL,
         EpisodeCount int DEFAULT NULL,
@@ -61,7 +60,6 @@ def insert_mal_anime_detail(data):
         Title, 
         AltNameEnglish,
         AltNameSynonyms,
-        AltNameJapanese,
         Synopsis,
         MediaType,
         EpisodeCount,
@@ -80,8 +78,8 @@ def insert_mal_anime_detail(data):
         PromoVideoBackgroundImageSrc,
         ImageSrc
     )
-    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-        %s, %s,%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s,
+        %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
     """
 
     values = (
@@ -89,7 +87,6 @@ def insert_mal_anime_detail(data):
         data["Title"],
         data["AltNameEnglish"],
         data["AltNameSynonyms"],
-        data["AltNameJapanese"],
         data["Synopsis"],
         data["MediaType"],
         data["EpisodeCount"],

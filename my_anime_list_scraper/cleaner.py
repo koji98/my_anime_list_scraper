@@ -17,7 +17,6 @@ def clean_anime_details(information_dict):
     # Removing whitespace
     clean_information_dict["AltNameEnglish"] = information_dict["English"].strip() if "English" in information_dict else None
     clean_information_dict["AltNameSynonyms"] = information_dict["Synonyms"].strip() if "Synonyms" in information_dict else None
-    clean_information_dict["AltNameJapanese"] = information_dict["Japanese"].strip() if "Japanese" in information_dict else None
     clean_information_dict["MediaType"] = information_dict["Type"].strip() if "Type" in information_dict else None
     
     # try-except due to type conversion
