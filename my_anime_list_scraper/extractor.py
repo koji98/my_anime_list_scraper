@@ -10,6 +10,7 @@ def extract_anime_details(soup, mal_id):
         Id of the anime being scraped
     """
     
+    print("please")
     dark_text_child_data = soup.find_all("span", class_="dark_text")
     details_dict = {}
 
@@ -37,7 +38,12 @@ def extract_anime_details(soup, mal_id):
             key_value = parent.text.strip().split(":")
             details_dict[key_value[0]] = key_value[1]
 
-    title = soup.select("h1.title-name strong")[0].text.strip()
+    title_list = soup.select("h1.title-name strong")
+    title = None
+
+    if len(title_list) > 0:
+        title = title_list[0].text.strip()
+
     description = soup.find("p", itemprop="description").text.strip()
     image = soup.find("img", itemprop="image")["data-src"].strip()
     video = soup.find("a", class_="iframe js-fancybox-video video-unit promotion")

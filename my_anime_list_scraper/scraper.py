@@ -49,7 +49,7 @@ class MalScraper:
             self.sql_manager = DatabaseManager(db_host, db_user, db_password, db_database)
 
 
-    def scrape_details(self, content_type="anime", start_page=0, failure_threshold=100, print_intermediate=False):
+    def scrape_details(self, content_type="anime", start_page=0, failure_threshold=100, print_intermediate=False, num_retries=5):
         """
         Scrapes MyAnimeList detail pages.
 
@@ -65,11 +65,15 @@ class MalScraper:
         print_intermediate: bool
             Determines if intermediate output would be appreciated by the user (current page being scraped, number of 
             consectuve fails, etc.).
+        num_retries: int
+            Number of retries the scraper will attempt for an individual page. This is used as a backup for IP blocking scenarios.
+            The time between retries are always (5 minutes * retry attempt #).
         """
 
         continue_scraping = True
         mal_id = start_page
         failure_count = 0
+        retry_count = 0
         sql_details_table = self.sql_manager.check_table_exists("MAL_Anime_Details") if self.sql_manager != None else None
 
         if sql_details_table == False:
@@ -77,7 +81,7 @@ class MalScraper:
             self.sql_manager.execute(sql_queries.create_mal_anime_detail_stats_table(), None)
 
         if print_intermediate:
-            print("=======================STARTING MYANIMELIST SCRAPER=======================\n")
+            print("\n\n======================= STARTING MYANIMELIST SCRAPER =======================\n")
             print(str(self.request_period) + " seconds between page requests\n\n")
 
         try: 
@@ -87,8 +91,30 @@ class MalScraper:
                 if print_intermediate:
                     print("Scraping: " + url)
 
-                # Request page
-                page = requests.get(url)
+                page = None
+
+                # Attempt page request, if the IP address is blocked, keep retrying with increasing time in between requests until
+                # num_retries is hit.
+                try:
+                    # Request page
+                    page = requests.get(url)
+                    retry_count = 0
+                except requests.exceptions.ConnectionError as e:
+                    retry_count = retry_count + 1
+
+                    if retry_count <= num_retries:
+                        if print_intermediate:
+                            print("\nIP has been blocked. Retrying in " + str(retry_count * 5)  + " minutes...")
+                            print("Currently at " + str(retry_count) + "/" + str(num_retries) + " possible attempts for " + url + "\n")
+
+                        time.sleep((retry_count * 5) * 60)
+                        continue
+                    else:
+                        raise(e)
+
+                # This should never occur.
+                if page == None:
+                    raise(url + " cannot be requested.")
 
                 # Parse content
                 soup = BeautifulSoup(page.content, "html.parser")
@@ -126,10 +152,10 @@ class MalScraper:
                 time.sleep(self.request_period)
 
             if print_intermediate:
-                print("\n\n =======================FINISHED SCRAPING MYANIMELIST =======================\n")
+                print("\n\n======================= FINISHED SCRAPING MYANIMELIST =======================\n")
         except Exception as e:
             print("\n\nError occured while scraping "  + self.base_url + content_type + "/" + str(mal_id) + "\n\n")
-            print(e)
+            raise(e)
 
     def __extract(self, soup, mal_id, page_type):
         """

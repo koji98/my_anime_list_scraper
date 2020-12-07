@@ -36,6 +36,7 @@ A package to easily scrape www.myanimelist.com. The purpose of this package is t
 | start_page | int | The page to start scraping *(e.g. type="anime" and start_page=5 => https://myanimelist.net/anime/5 )* <br/><br/> Default Value: `0` |
 | failure_threshold | int | The number of consecutive fails allowed before stopping the scraper. A fail is when a 404 page is returned, signifying no content is at that page. <br/><br/> Default Value: `100` |
 | print_intermediate | bool | Determine if to print intermediate output during scraping to keep user informed on progress. <br/><br/> Default Value: `False` |
+| num_retries | int | Number of retries the scraper will attempt for an individual page. This is used as a backup for IP blocking scenarios. The time between retries are always (5 minutes * retry attempt #). <br/><br/> Default Value: `5` |
 
 Scraped Details (anime example):
 
