@@ -42,16 +42,19 @@ def extract_anime_details(soup, mal_id):
 
     if len(title_list) > 0:
         title = title_list[0].text.strip()
+        details_dict["Title"] = title
 
     description = soup.find("p", itemprop="description")
 
     if description is not None:
         description = description.text.strip()
+        details_dict["Synopsis"] = description
 
     image = soup.find("img", itemprop="image")
     
     if image is not None:
         image = image["data-src"].strip()
+        details_dict["ImageSrc"] = image
 
     video = soup.find("a", class_="iframe js-fancybox-video video-unit promotion")
     
@@ -61,9 +64,6 @@ def extract_anime_details(soup, mal_id):
         details_dict["PromoVideo"] = promo_video
         details_dict["PromoVideoBackgroundImage"] = promo_video_background_image
 
-    details_dict["Title"] = title
-    details_dict["ImageSrc"] = image
-    details_dict["Synopsis"] = description
     details_dict["MyAnimeListId"] = mal_id
 
     return details_dict
