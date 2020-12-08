@@ -43,8 +43,16 @@ def extract_anime_details(soup, mal_id):
     if len(title_list) > 0:
         title = title_list[0].text.strip()
 
-    description = soup.find("p", itemprop="description").text.strip()
-    image = soup.find("img", itemprop="image")["data-src"].strip()
+    description = soup.find("p", itemprop="description")
+
+    if description is not None:
+        description = description.text.strip()
+
+    image = soup.find("img", itemprop="image")
+    
+    if image is not None:
+        image = image["data-src"].strip()
+
     video = soup.find("a", class_="iframe js-fancybox-video video-unit promotion")
     
     if video is not None:
