@@ -16,7 +16,7 @@ def create_mal_anime_details_table():
         Aired varchar(255) DEFAULT NULL,
         Premiered varchar(255) DEFAULT NULL,
         Broadcast varchar(255) DEFAULT NULL,
-        Producers varchar(255) DEFAULT NULL,
+        Producers varchar(500) DEFAULT NULL,
         Licensors varchar(255) DEFAULT NULL,
         Studios varchar(255) DEFAULT NULL,
         Source varchar(50) DEFAULT NULL,
